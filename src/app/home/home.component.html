@@ -1,0 +1,27 @@
+<app-toolbar></app-toolbar>
+
+<div class="home-container" [ngClass]="{'two-columns': files.length > 0}">
+  <div class="column">
+    <!-- Upload Section -->
+    <mat-card class="upload-card">
+      <app-upload (fileSelect)="onFileSelect($event)"></app-upload>
+    </mat-card>
+
+    <!-- Data Display Section -->
+    <mat-card class="upload-card" *ngIf="files.length > 0">
+      <app-data-display-card
+        [tableData]="[
+          { role: 'Director', name: 'Alex Silverstone' },
+          { role: 'Producer', name: 'Jordan Fairfax' },
+          { role: 'Screenwriter', name: 'Taylor Everwood' }
+        ]"
+        [tableColumns]="['role', 'name']">
+      </app-data-display-card>
+    </mat-card>
+  </div>
+  <div class="column" *ngIf="files.length > 0">
+    <mat-card class="upload-card">
+      <app-preview></app-preview>>
+    </mat-card>
+  </div>
+</div>

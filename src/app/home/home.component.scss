@@ -1,0 +1,39 @@
+.home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  padding: 1rem 0;
+  flex-direction: column;
+}
+
+.home-container.two-columns {
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.upload-card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4rem;
+  width: 80%;
+  max-width: 1200px;
+  padding: 6rem 4rem 2rem;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+.upload-card + .upload-card {
+  margin-top: 2rem;
+}
