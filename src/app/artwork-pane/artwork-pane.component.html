@@ -1,0 +1,29 @@
+<div class="artwork-container">
+    <div
+      class="artwork-preview"
+      [ngStyle]="{
+        'background-image': 'url(assets/poster-templates/' + backgroundImage + ')',
+        'background-size': 'cover',
+        'background-position': 'center',
+        'background-repeat': 'no-repeat',
+        'font-size': artworkStyle.fontSize,
+        'color': artworkStyle.color
+      }"
+    >
+      <h1 class="movie-title">{{ movieTitle }}</h1>
+      <div class="credits" *ngFor="let credit of credits">
+        <span class="role">{{ credit.role }}: </span>
+        <span class="name">{{ credit.name }}</span>
+      </div>
+    </div>
+  
+    <!-- Simple Controls for Styling -->
+    <div class="artwork-controls">
+      <label for="font-size">Font Size</label>
+      <input id="font-size" type="range" min="16" max="48" [(ngModel)]="artworkStyle.fontSize" />
+  
+      <label for="color">Font Color</label>
+      <input id="color" type="color" [(ngModel)]="artworkStyle.color" />
+    </div>
+  </div>
+  

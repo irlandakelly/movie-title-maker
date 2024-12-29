@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreviewComponent } from './preview.component';
+import { ArtworkPaneComponent } from './artwork-pane.component';
 
-describe('PreviewComponent', () => {
-  let component: PreviewComponent;
-  let fixture: ComponentFixture<PreviewComponent>;
+describe('ArtworkPaneComponent', () => {
+  let component: ArtworkPaneComponent;
+  let fixture: ComponentFixture<ArtworkPaneComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PreviewComponent]
+      imports: [ArtworkPaneComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PreviewComponent);
+    fixture = TestBed.createComponent(ArtworkPaneComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

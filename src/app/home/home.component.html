@@ -1,6 +1,6 @@
 <app-toolbar></app-toolbar>
 
-<div class="home-container" [ngClass]="{'two-columns': files.length > 0}">
+<div class="home-container" [ngClass]="{ 'two-columns': files.length > 0 }">
   <div class="column">
     <!-- Upload Section -->
     <mat-card class="upload-card">
@@ -10,18 +10,20 @@
     <!-- Data Display Section -->
     <mat-card class="upload-card" *ngIf="files.length > 0">
       <app-data-display
-        [tableData]="[
-          { role: 'Director', name: 'Alex Silverstone' },
-          { role: 'Producer', name: 'Jordan Fairfax' },
-          { role: 'Screenwriter', name: 'Taylor Everwood' }
-        ]"
-        [tableColumns]="['role', 'name']">
-      </app-data-display>
+        [tableData]="movieData.credits"
+        [tableColumns]="['role', 'name']"
+      ></app-data-display>
     </mat-card>
   </div>
+
   <div class="column" *ngIf="files.length > 0">
+    <!-- Artwork Pane Section -->
     <mat-card class="upload-card">
-      <app-preview></app-preview>>
+      <app-artwork-pane
+        [movieTitle]="movieData.title"
+        [credits]="movieData.credits"
+        [genre]="movieData.genre"
+      ></app-artwork-pane>
     </mat-card>
   </div>
 </div>
