@@ -1,4 +1,9 @@
-<div class="upload-container" cdkDropList (cdkDropListDropped)="onDrop($event)" (click)="onFileInputClick()">
+<div
+  class="upload-container"
+  (drop)="onDrop($event)"
+  (dragover)="onDragOver($event)"
+  (click)="onFileInputClick()"
+>
   <img src="assets/icons/folder.png" alt="Upload Icon" class="upload-icon">
   <p style="color: grey; font-size: larger;">Drag & drop your files here</p>
   <p style="color: grey; font-size: smaller;">or click to select from your device</p>
@@ -22,4 +27,3 @@
     </mat-list-item>
   </mat-list>
 </div>
-

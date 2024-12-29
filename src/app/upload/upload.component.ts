@@ -16,32 +16,51 @@ import { RouterModule } from '@angular/router';
     MatListModule,
     MatButtonModule,
     RouterModule,
-  ]
+  ],
 })
 export class UploadComponent {
   @Output() fileSelect = new EventEmitter<File[]>();
-  files: File[] = [];
+  files: File[] = []; // Store all selected and dropped files
 
+  // Trigger file input dialog
   onFileInputClick(): void {
     const input = document.querySelector('input[type="file"]') as HTMLInputElement;
     input.click();
   }
 
+  // Handle file input selection
   onFileSelect(event: Event): void {
     const input = event.target as HTMLInputElement;
     if (input.files) {
-      this.files = Array.from(input.files);
-      this.fileSelect.emit(this.files);
+      this.addFiles(Array.from(input.files));
+      input.value = ''; // Clear input to allow reselecting the same files
     }
   }
 
-  onDrop(event: any): void {
-    this.files = [...this.files, ...event.dataTransfer.files];
+  // Handle drag-and-drop
+  onDrop(event: DragEvent): void {
+    event.preventDefault();
+    if (event.dataTransfer?.files) {
+      this.addFiles(Array.from(event.dataTransfer.files));
+    }
+  }
+
+  // Prevent default behavior during drag-over
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+  }
+
+  // Remove a file from the list
+  removeFile(index: number): void {
+    this.files.splice(index, 1);
     this.fileSelect.emit(this.files);
   }
 
-  removeFile(index: number): void {
-    this.files.splice(index, 1);
+  // Add new files to the list, avoiding duplicates
+  private addFiles(newFiles: File[]): void {
+    const existingFiles = new Set(this.files.map((file) => file.name));
+    const uniqueFiles = newFiles.filter((file) => !existingFiles.has(file.name));
+    this.files = [...this.files, ...uniqueFiles];
     this.fileSelect.emit(this.files);
   }
 }

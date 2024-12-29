@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DataDisplayCardComponent } from './data-display-card.component';
+import { DataDisplayComponent } from './data-display.component';
 
-describe('DataDisplayCardComponent', () => {
-  let component: DataDisplayCardComponent;
-  let fixture: ComponentFixture<DataDisplayCardComponent>;
+describe('DataDisplayComponent', () => {
+  let component: DataDisplayComponent;
+  let fixture: ComponentFixture<DataDisplayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DataDisplayCardComponent]
+      imports: [DataDisplayComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(DataDisplayCardComponent);
+    fixture = TestBed.createComponent(DataDisplayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,14 +9,14 @@
 
     <!-- Data Display Section -->
     <mat-card class="upload-card" *ngIf="files.length > 0">
-      <app-data-display-card
+      <app-data-display
         [tableData]="[
           { role: 'Director', name: 'Alex Silverstone' },
           { role: 'Producer', name: 'Jordan Fairfax' },
           { role: 'Screenwriter', name: 'Taylor Everwood' }
         ]"
         [tableColumns]="['role', 'name']">
-      </app-data-display-card>
+      </app-data-display>
     </mat-card>
   </div>
   <div class="column" *ngIf="files.length > 0">

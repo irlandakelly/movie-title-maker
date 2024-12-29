@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { UploadComponent } from '../upload/upload.component';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
-import { DataDisplayCardComponent } from '../data-display-card/data-display-card.component';
+import { DataDisplayComponent } from '../data-display/data-display.component';
 import { CommonModule } from '@angular/common';
 import { PreviewComponent } from "../preview/preview.component";
 
@@ -11,7 +11,7 @@ import { PreviewComponent } from "../preview/preview.component";
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  imports: [MatCardModule, ToolbarComponent, UploadComponent, DataDisplayCardComponent, CommonModule, PreviewComponent],
+  imports: [MatCardModule, ToolbarComponent, UploadComponent, DataDisplayComponent, CommonModule, PreviewComponent],
 })
 export class HomeComponent {
   files: File[] = [];

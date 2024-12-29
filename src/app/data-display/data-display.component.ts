@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { DataTableComponent } from '../data-table/data-table.component';
 
 @Component({
-  selector: 'app-data-display-card',
+  selector: 'app-data-display',
   standalone: true,
-  templateUrl: './data-display-card.component.html',
-  styleUrls: ['./data-display-card.component.scss'],
+  templateUrl: './data-display.component.html',
+  styleUrls: ['./data-display.component.scss'],
   imports: [DataTableComponent],
 })
-export class DataDisplayCardComponent {
+export class DataDisplayComponent {
   @Input() tableData: any[] = [];
   @Input() tableColumns: string[] = [];
 }
