@@ -6,6 +6,7 @@ import { DataDisplayComponent } from '../data-display/data-display.component';
 import { CommonModule } from '@angular/common';
 import { ArtworkPaneComponent } from '../artwork-pane/artwork-pane.component';
 import Swal from 'sweetalert2';
+import { HomeService } from '../services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,7 @@ import Swal from 'sweetalert2';
 })
 export class HomeComponent {
   files: File[] = [];
+  isSaveDisabled: boolean = true;
 
   get hasFiles(): boolean {
     return this.files && this.files.length > 0;
@@ -27,8 +29,9 @@ export class HomeComponent {
     credits: [] as { role: string; name: string }[],
   };
 
-  constructor() {
+  constructor(private homeService: HomeService) {
     this.generateMovieData();
+    this.homeService.shouldShowAlert = true;
   }
 
   onFileSelect(files: File[]): void {
@@ -64,26 +67,11 @@ export class HomeComponent {
       credits: randomCredits,
     };
 
-    this.checkForMissingData();
+    this.homeService.checkForMissingData(this.movieData.credits);
   }
 
   updateCredits(updatedCredits: { role: string; name: string }[]): void {
-    console.log('Updating Credits in HomeComponent:', updatedCredits);
     this.movieData.credits = updatedCredits;
-    this.checkForMissingData();
-  }
-
-  checkForMissingData(): void {
-    const missingData = this.movieData.credits.some((credit) => !credit.name);
-    if (missingData) {
-      Swal.fire({
-        title: 'Missing Data!',
-        text: 'Some credits are missing data. Please edit the missing fields.',
-        icon: 'warning',
-        color: '#666666',
-        confirmButtonText: 'Okay',
-        confirmButtonColor: '#051E3A',
-      });
-    }
+    this.homeService.checkForMissingData(this.movieData.credits);
   }
 }

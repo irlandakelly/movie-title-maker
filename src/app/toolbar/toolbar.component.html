@@ -1,7 +1,6 @@
 <mat-toolbar>
-    <span>{{ title }}</span>
-    <span class="spacer"></span>
-    <button mat-raised-button class="save-button">SAVE</button>
-    <button mat-button class="help-button">HELP</button>
-  </mat-toolbar>
-  
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+  <button mat-raised-button class="save-button" [disabled]="homeService.isSaveDisabled">SAVE</button>
+  <button mat-button class="help-button">HELP</button>
+</mat-toolbar>

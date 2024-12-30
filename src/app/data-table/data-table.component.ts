@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { HomeService } from '../services/home.service';
 
 @Component({
   selector: 'app-data-table',
@@ -23,6 +24,8 @@ export class DataTableComponent implements OnChanges, AfterViewChecked {
   tableData: { role: string; name: string }[] = [];
   editingIndex: number | null = null;
   private shouldFocus = false;
+
+  constructor(private homeService: HomeService) {}
 
   ngOnChanges(): void {
     this.generateTableData();
@@ -71,16 +74,15 @@ export class DataTableComponent implements OnChanges, AfterViewChecked {
   }
 
   updateName(index: number, newName: string): void {
-    console.log('Updating Name:', { index, newName });
     this.tableData[index].name = newName.trim() || 'Missing Data';
-    this.syncDataSource(); // Synchronize and emit
+    this.syncDataSource();
     this.editingIndex = null;
+    this.homeService.checkForMissingData(this.tableData);
   }
 
   syncDataSource(): void {
     this.dataSource = this.tableData.map((row) => ({ ...row }));
-    console.log('Emitting data:', this.dataSource); // Debug log
-    this.dataChange.emit([...this.dataSource]); // Emit updated data
+    this.dataChange.emit([...this.dataSource]);
   }
 
 }
