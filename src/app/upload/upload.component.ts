@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
@@ -19,6 +19,7 @@ import { RouterModule } from '@angular/router';
   ],
 })
 export class UploadComponent {
+  @Input() hasFiles: boolean = false;
   @Output() fileSelect = new EventEmitter<File[]>();
   files: File[] = []; // Store all selected and dropped files
 

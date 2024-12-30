@@ -12,6 +12,10 @@
   cursor: pointer;
   min-height: 45vh;
 
+  &.no-min-height {
+    min-height: auto;
+  }
+
   .upload-icon {
     width: 100px;
     height: 100px;
@@ -29,7 +33,10 @@
   display: inline-block;
   margin-top: 10px;
   width: 100%;
+  max-height: 28.7vh; // Limitar la altura máxima
+  overflow-y: auto;
   justify-content: space-between;
+  max-width: 100%;
 
   span span{
     display: inline-block;
@@ -47,17 +54,25 @@
 
   .file-item {
     border-bottom: 1px solid #e0e0e0;
+    display: flex; // Asegurar que los elementos hijos se alineen correctamente
+    align-items: center; // Centrar verticalmente los elementos hijos
+    padding: 8px 0; // Añadir padding para mejorar la apariencia
   }
 
   .file-name {
     flex-grow: 1;
     font-size: 14px;
     color: #333;
-    word-wrap: break-word;
+    white-space: nowrap; // Evitar que el texto se envuelva
+    overflow: hidden; // Ocultar el desbordamiento
+    text-overflow: ellipsis; // Mostrar puntos suspensivos si el texto es demasiado largo
+    margin-right: 8px; // Añadir margen para separar del botón de eliminación
+    max-width: calc(100% - 40px) !important;
   }
 
   .remove-button {
     color: #ff0000;
     vertical-align: middle;
+    flex-shrink: 0; 
   }
 }

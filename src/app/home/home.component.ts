@@ -16,6 +16,10 @@ import { ArtworkPaneComponent } from '../artwork-pane/artwork-pane.component';
 export class HomeComponent {
   files: File[] = [];
 
+  get hasFiles(): boolean {
+    return this.files && this.files.length > 0;
+  }
+
   movieData = {
     title: '',
     genre: '',

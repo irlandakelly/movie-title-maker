@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 16px;
+  padding-top: 30px;
 
   .artwork-preview {
-    width: 80%;
-    height: 400px;
+    min-height: 90vh;
+    width: 95%;
     border: 2px solid #ccc;
     border-radius: 8px;
     padding: 16px;
@@ -25,14 +25,14 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* Adjust the color and opacity as needed */
-      z-index: 1; /* Ensure the overlay is above the background image but below the text */
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
     }
 
     .movie-title,
     .credits {
       position: relative;
-      z-index: 2; /* Ensure the text is above the overlay */
+      z-index: 2;
     }
   }
 
@@ -40,13 +40,14 @@
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 16px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add some contrast */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .credits {
     font-size: 1rem;
     font-weight: 500;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Add some contrast */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    padding: 10px;
   }
 
   .artwork-controls {

@@ -19,7 +19,7 @@ export class DataTableComponent implements OnChanges, AfterViewChecked {
   @Output() dataChange = new EventEmitter<{ role: string; name: string }[]>();
   @ViewChildren('nameInput') nameInputs!: QueryList<ElementRef>;
 
-  requiredRoles: string[] = ['Director', 'Producer', 'Music Composer', 'Screenwriter'];
+  requiredRoles: string[] = ['Director', 'Producer', 'Screenwriter', 'Music Composer'];
   tableData: { role: string; name: string }[] = [];
   editingIndex: number | null = null;
   private shouldFocus = false;
