@@ -5,8 +5,8 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { DataDisplayComponent } from '../data-display/data-display.component';
 import { CommonModule } from '@angular/common';
 import { ArtworkPaneComponent } from '../artwork-pane/artwork-pane.component';
-import Swal from 'sweetalert2';
 import { HomeService } from '../services/home.service';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-home',
@@ -73,5 +73,17 @@ export class HomeComponent {
   updateCredits(updatedCredits: { role: string; name: string }[]): void {
     this.movieData.credits = updatedCredits;
     this.homeService.checkForMissingData(this.movieData.credits);
+  }
+
+  downloadArtwork(): void {
+    const artworkPane = document.querySelector('.artwork-container') as HTMLElement;
+    if (artworkPane) {
+      html2canvas(artworkPane).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'artwork.png';
+        link.click();
+      });
+    }
   }
 }

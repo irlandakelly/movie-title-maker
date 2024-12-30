@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { HomeService } from '../services/home.service';
@@ -12,5 +12,11 @@ import { HomeService } from '../services/home.service';
 })
 export class ToolbarComponent {
   constructor(public homeService: HomeService) {}
+  @Output() saveClick = new EventEmitter<void>();
+
   title = 'Movie Title Maker';
+
+  onSaveClick(): void {
+    this.saveClick.emit();
+  }
 }

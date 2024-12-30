@@ -1,16 +1,25 @@
-<app-toolbar></app-toolbar>
+<app-toolbar (saveClick)="downloadArtwork()"></app-toolbar>
 
 <div class="home-container" [ngClass]="{ 'two-columns': files.length > 0 }">
   <div class="column">
     <!-- Upload Section -->
-    <mat-card class="grid-card" [ngClass]="{'has-files': hasFiles}">
+    <mat-card class="grid-card" [ngClass]="{ 'has-files': hasFiles }">
       <h2>Upload your files</h2>
-      <h3 *ngIf="!hasFiles">Ready to create your movie title? Upload a file to get started.</h3>
-      <app-upload (fileSelect)="onFileSelect($event)" [hasFiles]="hasFiles"></app-upload>
+      <h3 *ngIf="!hasFiles">
+        Ready to create your movie title? Upload a file to get started.
+      </h3>
+      <app-upload
+        (fileSelect)="onFileSelect($event)"
+        [hasFiles]="hasFiles"
+      ></app-upload>
     </mat-card>
 
     <!-- Data Display Section -->
-    <mat-card class="grid-card" [ngClass]="{'has-files': hasFiles}" *ngIf="files.length > 0">
+    <mat-card
+      class="grid-card"
+      [ngClass]="{ 'has-files': hasFiles }"
+      *ngIf="files.length > 0"
+    >
       <app-data-display
         [tableData]="movieData.credits"
         [tableColumns]="['role', 'name', 'edit']"
@@ -21,8 +30,9 @@
 
   <div class="column" *ngIf="files.length > 0">
     <!-- Artwork Pane Section -->
-    <mat-card class="grid-card" [ngClass]="{'has-files': hasFiles}">
+    <mat-card class="grid-card" [ngClass]="{ 'has-files': hasFiles }">
       <app-artwork-pane
+        #artworkPane
         [movieTitle]="movieData.title"
         [credits]="movieData.credits"
         [genre]="movieData.genre"
