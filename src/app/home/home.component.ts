@@ -58,7 +58,7 @@ export class HomeComponent {
 
     const randomCredits = roles.map((role) => ({
       role,
-      name: Math.random() > 0.3 ? persons[Math.floor(Math.random() * persons.length)] : '', // 30% chance to leave empty
+      name: Math.random() > 0.3 ? persons[Math.floor(Math.random() * persons.length)] : '',
     }));
 
     this.movieData = {
