@@ -5,6 +5,7 @@ import { ToolbarComponent } from '../toolbar/toolbar.component';
 import { DataDisplayComponent } from '../data-display/data-display.component';
 import { CommonModule } from '@angular/common';
 import { ArtworkPaneComponent } from '../artwork-pane/artwork-pane.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -48,26 +49,41 @@ export class HomeComponent {
       'Susan Hall', 'Paul King', 'Karen Adams', 'Mark Baker',
       'Margaret Gonzalez', 'Steven Nelson', 'Donna Lee', 'Kenneth Perez',
     ];
-  
+
     const randomTitle = titles[Math.floor(Math.random() * titles.length)];
     const randomGenre = genres[Math.floor(Math.random() * genres.length)];
-  
+
     const randomCredits = roles.map((role) => ({
       role,
       name: Math.random() > 0.3 ? persons[Math.floor(Math.random() * persons.length)] : '', // 30% chance to leave empty
     }));
-  
+
     this.movieData = {
       title: randomTitle,
       genre: randomGenre,
       credits: randomCredits,
     };
+
+    this.checkForMissingData();
   }
-  
+
   updateCredits(updatedCredits: { role: string; name: string }[]): void {
     console.log('Updating Credits in HomeComponent:', updatedCredits);
     this.movieData.credits = updatedCredits;
+    this.checkForMissingData();
   }
-  
-  
+
+  checkForMissingData(): void {
+    const missingData = this.movieData.credits.some((credit) => !credit.name);
+    if (missingData) {
+      Swal.fire({
+        title: 'Missing Data!',
+        text: 'Some credits are missing data. Please edit the missing fields.',
+        icon: 'warning',
+        color: '#666666',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: '#051E3A',
+      });
+    }
+  }
 }
