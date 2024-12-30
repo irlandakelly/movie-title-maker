@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewChecked, Component, ElementRef, Input, OnChanges, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, EventEmitter, Input, OnChanges, Output, QueryList, ViewChildren } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 export class DataTableComponent implements OnChanges, AfterViewChecked {
   @Input() dataSource: { role: string; name: string }[] = [];
   @Input() displayedColumns: string[] = ['role', 'name', 'edit'];
+  @Output() dataChange = new EventEmitter<{ role: string; name: string }[]>();
   @ViewChildren('nameInput') nameInputs!: QueryList<ElementRef>;
 
   requiredRoles: string[] = ['Director', 'Producer', 'Music Composer', 'Screenwriter'];
@@ -37,22 +38,25 @@ export class DataTableComponent implements OnChanges, AfterViewChecked {
       }
     }
   }
-  
+
   generateTableData(): void {
     this.tableData = this.requiredRoles.map((role) => {
-      const matchedEntry = this.dataSource.find((entry) => entry.role === role);
+      const match = this.dataSource.find((entry) => entry.role === role);
       return {
         role,
-        name: matchedEntry?.name || 'Missing Data',
+        name: match?.name || 'Missing Data',
       };
     });
   }
 
   startEditing(index: number): void {
+    const row = this.tableData[index];
+    if (row.name === 'Missing Data') {
+      row.name = '';
+    }
     this.editingIndex = index;
     this.shouldFocus = true;
-  
-    // Use setTimeout to ensure DOM updates
+
     setTimeout(() => {
       const inputToFocus = document.querySelector(`#input-${index}`) as HTMLInputElement;
       if (inputToFocus) {
@@ -61,12 +65,22 @@ export class DataTableComponent implements OnChanges, AfterViewChecked {
     }, 0);
   }
 
+
   stopEditing(index: number): void {
     this.editingIndex = null;
   }
 
   updateName(index: number, newName: string): void {
+    console.log('Updating Name:', { index, newName });
     this.tableData[index].name = newName.trim() || 'Missing Data';
+    this.syncDataSource(); // Synchronize and emit
     this.editingIndex = null;
   }
+
+  syncDataSource(): void {
+    this.dataSource = this.tableData.map((row) => ({ ...row }));
+    console.log('Emitting data:', this.dataSource); // Debug log
+    this.dataChange.emit([...this.dataSource]); // Emit updated data
+  }
+
 }

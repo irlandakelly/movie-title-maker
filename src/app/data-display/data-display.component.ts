@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DataTableComponent } from '../data-table/data-table.component';
 
 @Component({
@@ -9,6 +9,12 @@ import { DataTableComponent } from '../data-table/data-table.component';
   imports: [DataTableComponent],
 })
 export class DataDisplayComponent {
-  @Input() tableData: any[] = [];
+  @Input() tableData: { role: string; name: string }[] = [];
   @Input() tableColumns: string[] = [];
+  @Output() dataChange = new EventEmitter<{ role: string; name: string }[]>();
+
+  onDataChange(updatedData: { role: string; name: string }[]): void {
+    console.log('DataDisplay emitting:', updatedData);
+    this.dataChange.emit(updatedData);
+  }
 }

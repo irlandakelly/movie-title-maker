@@ -1,10 +1,11 @@
-
-    <div class="card-header">
-      <h2 class="card-title">Data</h2>
-    </div>
-    <div class="card-content">
-      <app-data-table
-        [dataSource]="tableData"
-        [displayedColumns]="tableColumns">
-      </app-data-table>
-    </div>
+<div class="card-header">
+  <h2 class="card-title">Data</h2>
+</div>
+<div class="card-content">
+  <app-data-table
+    [dataSource]="tableData"
+    [displayedColumns]="tableColumns"
+    (dataChange)="onDataChange($event)"
+  >
+  </app-data-table>
+</div>

@@ -12,6 +12,7 @@
       <app-data-display
         [tableData]="movieData.credits"
         [tableColumns]="['role', 'name', 'edit']"
+        (dataChange)="updateCredits($event)"
       ></app-data-display>
     </mat-card>
   </div>

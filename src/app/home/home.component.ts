@@ -23,7 +23,7 @@ export class HomeComponent {
   };
 
   constructor() {
-    this.generateMovieData(); // Generate initial data
+    this.generateMovieData();
   }
 
   onFileSelect(files: File[]): void {
@@ -45,11 +45,9 @@ export class HomeComponent {
       'Margaret Gonzalez', 'Steven Nelson', 'Donna Lee', 'Kenneth Perez',
     ];
   
-    // Generate random title and genre
     const randomTitle = titles[Math.floor(Math.random() * titles.length)];
     const randomGenre = genres[Math.floor(Math.random() * genres.length)];
   
-    // Generate credits with random names, ensuring some roles might be missing
     const randomCredits = roles.map((role) => ({
       role,
       name: Math.random() > 0.3 ? persons[Math.floor(Math.random() * persons.length)] : '', // 30% chance to leave empty
@@ -60,6 +58,11 @@ export class HomeComponent {
       genre: randomGenre,
       credits: randomCredits,
     };
+  }
+  
+  updateCredits(updatedCredits: { role: string; name: string }[]): void {
+    console.log('Updating Credits in HomeComponent:', updatedCredits);
+    this.movieData.credits = updatedCredits;
   }
   
   
