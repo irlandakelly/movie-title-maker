@@ -11,7 +11,7 @@
     <mat-card class="upload-card" *ngIf="files.length > 0">
       <app-data-display
         [tableData]="movieData.credits"
-        [tableColumns]="['role', 'name']"
+        [tableColumns]="['role', 'name', 'edit']"
       ></app-data-display>
     </mat-card>
   </div>

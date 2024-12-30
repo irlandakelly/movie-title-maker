@@ -8,11 +8,50 @@
   <!-- Name Column -->
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
-    <td mat-cell *matCellDef="let element">
-      <span *ngIf="element.name !== 'Missing Data'; else missing">{{ element.name }}</span>
-      <ng-template #missing>
-        <span class="error">Missing Data</span>
-      </ng-template>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <!-- Display Mode -->
+      <span
+        *ngIf="editingIndex !== i"
+        [ngClass]="{'missing-data': element.name === 'Missing Data'}">
+        {{ element.name }}
+      </span>
+  
+      <!-- Edit Mode -->
+      <input
+        *ngIf="editingIndex === i"
+        matInput
+        [(ngModel)]="element.name"
+        #nameInput
+        id="input-{{ i }}"
+        (blur)="updateName(i, element.name)"
+        (keydown.enter)="updateName(i, element.name)"
+        [ngClass]="{'missing-data-input': element.name === 'Missing Data'}"
+      />
+    </td>
+  </ng-container>
+  
+  
+
+  <!-- Edit Column -->
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef> Edit </th>
+    <td mat-cell *matCellDef="let element; let i = index">
+      <button
+        mat-icon-button
+        *ngIf="editingIndex !== i"
+        (click)="startEditing(i)"
+        aria-label="Edit"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        *ngIf="editingIndex === i"
+        (click)="stopEditing(i)"
+        aria-label="Cancel"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
     </td>
   </ng-container>
 
