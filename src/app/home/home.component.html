@@ -3,12 +3,14 @@
 <div class="home-container" [ngClass]="{ 'two-columns': files.length > 0 }">
   <div class="column">
     <!-- Upload Section -->
-    <mat-card class="upload-card">
+    <mat-card class="grid-card">
+      <h2>Upload your files</h2>
+      <h3>Ready to create your movie title? Upload a file to get started.</h3>
       <app-upload (fileSelect)="onFileSelect($event)"></app-upload>
     </mat-card>
 
     <!-- Data Display Section -->
-    <mat-card class="upload-card" *ngIf="files.length > 0">
+    <mat-card class="grid-card" *ngIf="files.length > 0">
       <app-data-display
         [tableData]="movieData.credits"
         [tableColumns]="['role', 'name', 'edit']"
@@ -19,7 +21,7 @@
 
   <div class="column" *ngIf="files.length > 0">
     <!-- Artwork Pane Section -->
-    <mat-card class="upload-card">
+    <mat-card class="grid-card">
       <app-artwork-pane
         [movieTitle]="movieData.title"
         [credits]="movieData.credits"

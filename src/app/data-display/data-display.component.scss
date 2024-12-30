@@ -1,26 +1,15 @@
-.data-display-container {
-    padding: 16px;
-    border-radius: 12px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  
-    .card-header {
-      border-bottom: 1px solid #e0e0e0;
-      padding-bottom: 8px;
-    }
-  
-    .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      color: #0b375d;
-      margin: 0;
-    }
-  
-    .card-content {
-      margin-top: 16px;
-    }
-  }
-  
+.card-header {
+  padding-bottom: 8px;
+}
+
+.card-title {
+  font-size: 30px;
+  color: black;
+  margin: 0;
+  font-weight: normal;
+  text-align: center;
+}
+
+.card-content {
+  margin-top: 16px;
+}

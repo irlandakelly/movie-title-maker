@@ -8,4 +8,18 @@ mat-toolbar {
   .spacer {
     flex: 1 1 auto;
   }
+
+  .save-button {
+    background-color: white !important;
+    color: #051E3A !important;
+
+    &:hover {
+      background-color: #FFCC00 !important;
+      color: black !important;
+    }
+  }
+
+  .help-button {
+    color: #ffffff !important;
+  }
   
